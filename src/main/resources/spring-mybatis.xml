@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--c3p0的连接池作为数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.DriverManagerDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/tulun"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+
+    <!--获取会话工厂  class是全路径  property是 属性-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--加载mybatis的配置文件-->
+        <property name="configLocation" value="mybatisconfig.xml"/>
+        <!--加载mybatis的mapper配置   如果找不到xml，可能要添加classpth:mapper/*.xml指明是相对路径下的xml-->
+        <property name="mapperLocations" value="mapper/*.xml"/> <!--返回类型是数组，因为有可能多个xml文件-->
+    </bean>
+
+    <!--获取Student1Mapper接口的代理对象（MapperFactoryBean里有实现，需要传两参数）-->
+    <bean id="student1Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <!--会话工厂-->
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <!--指定接口文件位置-->
+        <property name="mapperInterface"   value="com.tulun.dao.Student1Mapper"/>
+    </bean>
+</beans>

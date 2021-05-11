@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--打开AOP注解，交给容器管理-->
+    <aop:aspectj-autoproxy />
+
+    <!--配置对象-->
+    <bean id="student" class="com.tulun.bean.Student"/>
+    <bean id="log" class="com.tulun.bean.DIYLog"/>
+
+
+    <!--&lt;!&ndash;配置AOP操作&ndash;&gt;-->
+    <!--<aop:config>-->
+    <!--&lt;!&ndash;配置切入 点 ：使用execution表达式&ndash;&gt;-->
+    <!--<aop:pointcut id="pointcut1" expression="execution(*  com.tulun.bean.Student.addStudent())"/>-->
+    <!--&lt;!&ndash;配置切面：把通知（writeLog）应用到方法（com.tulun.bean.Student.addStudent()）的过程&ndash;&gt;-->
+    <!--<aop:aspect ref="log">  &lt;!&ndash;自定义的bean用ref&ndash;&gt;-->
+    <!--&lt;!&ndash;配置增强类型  method属性：指定增强类中的哪个方法&ndash;&gt;-->
+    <!--&lt;!&ndash;<aop:before method="writeLog"  pointcut-ref="pointcut1"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<aop:after method="writeLog1"  pointcut-ref="pointcut1"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<aop:after-returning method="writeLog2"  pointcut-ref="pointcut1"/>&ndash;&gt;-->
+    <!--<aop:around method="around"  pointcut-ref="pointcut1"/>-->
+    <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+</beans>
