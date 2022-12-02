@@ -13,6 +13,7 @@ public class DIYLog {
 //        System.out.println("DIYLog.writeLog1");
 //    }
 
+//    即给addStudent方法添加后置通知
     @AfterReturning(value = "execution(* com.tulun.bean.Student.addStudent(..))")
 @AfterThrowing(value = "execution(* com.tulun.bean.Student.addStudent(..))")
     public void writeLog2(){
